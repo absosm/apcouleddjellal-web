@@ -1,0 +1,44 @@
+<?php
+
+
+$domain = 'apcouleddjellal.dz';
+$account = 'contact';
+$password = '19121989';
+
+
+// Connect to hMailServer
+try
+{
+    $obBaseApp = new COM("hMailServer.Application", NULL, CP_UTF8);
+}
+catch(Exception $e)
+{
+   echo $e->getMessage();
+   echo "<br>";
+   echo "This problem is often caused by DCOM permissions not being set.";
+   die;
+}
+
+
+$obBaseApp->Connect();
+
+if ($obBaseApp->Authenticate('administrator', 'hggiHmfv1')) {
+
+    $obDomain = $obBaseApp->Domains->ItemByName($domain);
+			
+    $obAccounts = $obDomain->Accounts();
+    $obAccount = $obAccounts->Add();
+    $obAccount->Address = $account . '@' . $domain;
+    $obAccount->Password = $password;
+    $obAccount->Active = 1;
+                    
+    $obAccount->MaxSize = 1024;
+    $obAccount->Save();
+
+}
+
+
+
+
+
+?>
