@@ -63,36 +63,17 @@
       // Initialize Firebase
       firebase.initializeApp(config);
       var database = firebase.database();
+      const rootRef = database.ref('posts');
 
       function writePost(userId, title, subject) {
-        firebase.database().ref('posts/'+ userId).set({
+
+        var postId = rootRef.push().key;
+
+        rootRef.child(userId).child(postId).set ({
           title: title,
           subject: subject
         });
       }
-
-      function signInWithEmailPassword(email, password) {
-
-        // [START auth_signin_password]
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in
-            var user = userCredential.user;
-            
-            console.log('auth success');
-            
-            writePost(user.uid,'test', 'test');
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(error);
-        });
-        // [END auth_signin_password]
-      }
-
-
-      signInWithEmailPassword("absosm@gmail.com", "19121989");
       
 
 
