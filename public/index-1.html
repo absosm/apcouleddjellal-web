@@ -65,24 +65,6 @@
       var database = firebase.database();
       const rootRef = database.ref('posts');
 
-      firebase.auth().signInWithEmailAndPassword('absosm@gmail.com', '19121989')
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        // ...
-        writePost(user.uid, 'titre', 'subject');
-      });
-
-      function writePost(userId, title, subject) {
-
-        var postId = rootRef.push().key;
-
-        rootRef.child(userId).child(postId).set ({
-          title: title,
-          subject: subject
-        });
-      }
-
       
       
 
