@@ -158,29 +158,28 @@
             rootRef.orderByChild(postid).limitToLast(1).once('value')
             .then((querySnapshot) => {
 
+                //console.log(querySnapshot.val());
+
                 if (!querySnapshot.numChildren()) { // handle rare no-results case
-                throw new Error('expected at least one result');
+                    throw new Error('expected at least one result');
+                    console.log('expected at least one result');
                 }
                 let dataSnapshot; 
                 querySnapshot.forEach((snap) => dataSnapshot = snap); // get the snapshot we want out of the query's results list
 
                 if (!dataSnapshot.exists()) { // value may be null, meaning idToFind doesn't exist
-                throw new Error(`Entry ${postid} not found.`);
+                    throw new Error(`Entry ${postid} not found.`);
+                    console.log(`Entry ${postid} not found`);
                 }
 
                 var posts_byid = dataSnapshot.val();
-                $.each(posts_byid, function(i, item) {
-                    var post = posts_byid[i];
-                    if (post != null) {
-                        $('.subject-post').html(post.subject);
-                        $('#content-post').html(post.content);
-                        $('#date-post').html(post.date);
-                    }
-                    // console.log('id:',i);
-                });
-
-                
-
+                console.log(posts_byid);
+                var post = posts_byid[postid];
+                if (post != null) {
+                    $('.subject-post').html(post.subject);
+                    $('#content-post').html(post.content);
+                    $('#date-post').html(post.date);
+                }
             })
             .catch((error) => {
                 console.log("Unexpected error:", error);
