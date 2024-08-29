@@ -1,4 +1,4 @@
-[
+const cities = [
 {"code":"0101","fr":"ADRAR","ar":"أدرار","wilaya":"1"},
 {"code":"0102","fr":"TAMEST","ar":"تامست","wilaya":"1"},
 {"code":"0104","fr":"REGGANE","ar":"رقان","wilaya":"1"},
@@ -1541,4 +1541,4 @@
 {"code":"5801","fr":"EL MENIAA","ar":"المنيعة","wilaya":"58"},
 {"code":"5802","fr":"HASSI FEHAL","ar":"حاسي الفحل","wilaya":"58"},
 {"code":"5803","fr":"HASSI GARA","ar":"حاسي القارة","wilaya":"58"}
-]
+];
